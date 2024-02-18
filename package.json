@@ -1,6 +1,21 @@
 {
   "name": "batch-request-manager",
   "version": "0.0.0",
+  "description": "A batch request manager for making multiple requests in parallel",
+  "keywords": [
+    "batch",
+    "request",
+    "manager"
+  ],
+  "author": "baranwang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baranwang/batch-request-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/baranwang/batch-request-manager/issues"
+  },
   "types": "./dist/types/index.d.ts",
   "main": "./dist/lib/index.js",
   "module": "./dist/es/index.js",
@@ -20,15 +35,6 @@
     "upgrade": "modern upgrade",
     "test": "modern test"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,mjs,cjs}": [
-      "node --max_old_space_size=8192 ./node_modules/eslint/bin/eslint.js --fix --color --cache --quiet"
-    ]
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "dist/"
-  ],
   "devDependencies": {
     "@modern-js/eslint-config": "2.46.1",
     "@modern-js/module-tools": "2.46.1",
@@ -40,9 +46,13 @@
     "prettier": "~2.8.1",
     "typescript": "~5.0.4"
   },
-  "sideEffects": [],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ]
 }

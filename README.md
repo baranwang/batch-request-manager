@@ -1,46 +1,57 @@
-# Modern.js Package
+# batch-request-manager
 
-## Setup
-
-Install the dependencies:
+## Install
 
 ```bash
-npm run install
+npm install batch-request-manager
 ```
 
-## Get Started
+## Usage
 
-Run and debug the module:
+```javascript
+import { BatchRequestManager } from 'batch-request-manager';
 
-```bash
-npm run dev
+const brm = new BatchRequestManager(
+  args => {
+    return fetch('https://api.example.com', {
+      method: 'POST',
+      body: JSON.stringify(args),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+  args => args.flat(),
+  200,
+);
 ```
 
-Run test cases:
+## API
 
-```bash
-npm run test
+### `BatchRequestManager`
+
+#### `constructor`
+
+```typescript
+const brm = new BatchRequestManager<T1, T2, R>(
+  /**
+   * Function that makes the request
+   */
+  requestFunction: (args: T1) => Promise<R>,
+  /**
+   * Function that merges the arguments
+   */
+  mergeArgsFunction: (args: T2[]) => T1,
+  /**
+   * Delay in milliseconds
+   */
+  delay: number,
+)
 ```
 
-Build the module for production:
+#### `request`
 
-```bash
-npm run build
+```typescript
+const args: T2 = { /* ... */ };
+const response: R = await brm.request(args);
 ```
-
-Enable optional features:
-
-```bash
-npm run new
-```
-
-Other commands:
-
-```bash
-npm run lint         # Lint and fix source files
-npm run change       # Add a new changeset
-npm run bump         # Update version and changelog via changeset
-npm run release      # Release the package
-```
-
-For more information, see the [Modern.js Module documentation](https://modernjs.dev/module-tools/en).
